@@ -1,17 +1,24 @@
+const logger = require("./log.core");
+
 class AppError {
-  constructor(httpCode = 500, errorCode = "G001", joinMessage = false, customMessage = "") {
+  constructor(
+    httpCode = 500,
+    errorCode = "G001",
+    joinMessage = false,
+    customMessage = "",
+  ) {
     this.httpCode = httpCode;
     this.errorCode = errorCode;
     this.joinMessage = joinMessage;
     this.customMessage = customMessage;
-  };
+  }
 }
 
 const errorEnum = {
-  "AUTH001": "UNAUTHORIZED"
+  AUTH001: "UNAUTHORIZED",
 };
 
-function handleError(err, req, res, next) {
+function handleError(err, req, res) {
   let httpCode = 500;
   const errorResponse = {
     msg: "Something went wrong",
@@ -19,15 +26,14 @@ function handleError(err, req, res, next) {
   };
   if (err instanceof AppError) {
     httpCode = err.httpCode;
-    console.log(err);
+    logger.info(err);
     if (err.errorCode) {
       errorResponse.errorCode = err.errorCode;
     }
 
     if (errorEnum[err.errorCode]) {
       errorResponse.msg = errorEnum[err.errorCode];
-
-    };
+    }
 
     if (err.customMessage) {
       if (err.joinMessage) {
@@ -37,8 +43,8 @@ function handleError(err, req, res, next) {
       }
     }
   }
-  console.log("final http", httpCode);
-  console.log("error res", errorResponse);
+  logger.info("final http", httpCode);
+  logger.info("error res", errorResponse);
 
   res.status(httpCode).send(errorResponse);
 }
