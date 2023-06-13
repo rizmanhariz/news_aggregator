@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
+const cron = require("node-cron");
 const authMiddleware = require("./middleware/auth.middleware");
 const { handleError } = require("./core/error.core");
 const { connectMongoDB } = require("./core/db.core");
@@ -35,3 +36,16 @@ app.use(handleError);
 
 app.listen(PORT);
 logger.info(`Server live on PORT: ${PORT}`);
+
+// ┌────────────── second (optional)
+// │ ┌──────────── minute
+// │ │ ┌────────── hour
+// │ │ │ ┌──────── day of month
+// │ │ │ │ ┌────── month
+// │ │ │ │ │ ┌──── day of week
+// │ │ │ │ │ │
+// │ │ │ │ │ │
+// * * * * * *
+cron.schedule("0 0 * * * *", () => {
+  // runs hourly to scrape apis
+});
