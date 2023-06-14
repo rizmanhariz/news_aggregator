@@ -10,7 +10,7 @@ function checkSecret(req, res, next) {
 
 function checkIsAdmin(req, res, next) {
   if (!req.user?.isAdmin) {
-    throw new AppError(400, "AUTH001");
+    throw new AppError(400, "AUTH001", true, "NOT ADMIN");
   }
   next();
 }

@@ -16,9 +16,10 @@ class AppError {
 
 const errorEnum = {
   AUTH001: "UNAUTHORIZED",
+  AUTH002: "USERNAME EXISTS",
 };
 
-function handleError(err, req, res) {
+function sendErrorResponse(err, req, res, next) {
   let httpCode = 500;
   const errorResponse = {
     msg: "Something went wrong",
@@ -50,6 +51,6 @@ function handleError(err, req, res) {
 }
 
 module.exports = {
-  handleError,
+  sendErrorResponse,
   AppError,
 };

@@ -2,12 +2,12 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const cron = require("node-cron");
-const authMiddleware = require("./middleware/auth.middleware");
-const { handleError } = require("./core/error.core");
+const { sendErrorResponse } = require("./core/error.core");
 const { connectMongoDB } = require("./core/db.core");
 const logger = require("./core/log.core");
 
 // define routers
+const authRouter = require("./routes/auth.route");
 const publisherRouter = require("./routes/publisher.route");
 const articleRouter = require("./routes/article.route");
 
@@ -23,8 +23,9 @@ connectMongoDB();
 // handle cors & general security
 app.use(cors());
 app.use(helmet());
-app.use(authMiddleware.checkSecret);
+app.use(express.json());
 
+app.use("/auth", authRouter);
 app.use("/publisher", publisherRouter);
 app.use("/article", articleRouter);
 
@@ -32,7 +33,7 @@ app.get("/", (req, res) => {
   res.send("Hey there");
 });
 
-app.use(handleError);
+app.use(sendErrorResponse);
 
 app.listen(PORT);
 logger.info(`Server live on PORT: ${PORT}`);
@@ -48,4 +49,5 @@ logger.info(`Server live on PORT: ${PORT}`);
 // * * * * * *
 cron.schedule("0 0 * * * *", () => {
   // runs hourly to scrape apis
+  
 });
