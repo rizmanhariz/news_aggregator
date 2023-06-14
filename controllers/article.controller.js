@@ -11,7 +11,12 @@ async function getArticles(req, res) {
 
   if (!req.user?.isAdmin) {
     filter.isDeleted = false;
-    projection = { title: 1, url: 1, coverImage: 1 };
+    projection = {
+      title: 1,
+      url: 1,
+      coverImage: 1,
+      publishedAt: 1,
+    };
   }
   const articleData = await ArticleModel.paginate(filter, {
     page,

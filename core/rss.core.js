@@ -1,3 +1,4 @@
+const parseISO = require("date-fns/parseISO");
 const Parser = require("rss-parser");
 const logger = require("./log.core");
 const { PublisherModel } = require("../models/publisher.model");
@@ -32,6 +33,8 @@ async function saveRSSData(publisher, rssItems) {
       publisher: publisher._id,
       guid: item.guid,
       language: publisher.language,
+      publishedAt: parseISO(item.isoDate),
+      content: item["content:encoded"],
     },
     { upsert: true },
   ));
