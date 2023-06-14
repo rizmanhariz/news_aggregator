@@ -17,6 +17,9 @@ class AppError {
 const errorEnum = {
   AUTH001: "UNAUTHORIZED",
   AUTH002: "USERNAME EXISTS",
+
+  INPUT001: "INVALID INPUT",
+  INPUT002: "DID NOT FIND RESOURCE",
 };
 
 function sendErrorResponse(err, req, res, next) {

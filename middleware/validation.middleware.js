@@ -37,7 +37,27 @@ async function validateLogin(req, res, next) {
   return next();
 }
 
+async function validateCreatePublisher(req, res, next) {
+  const inputSchema = Joi.object({
+    name: Joi.string().required(),
+    url: Joi.string().required(),
+    rss_url: Joi.string().required(),
+    isActive: Joi.boolean().required(),
+  });
+
+  try {
+    await inputSchema.validateAsync(req.body, {
+      abortEarly: false,
+    });
+  } catch (err) {
+    return next(new AppError(400, "INPUT001", false, err.message));
+  }
+
+  return next();
+}
+
 module.exports = {
   validateGetPublishers,
   validateLogin,
+  validateCreatePublisher,
 };
