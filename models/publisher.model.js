@@ -1,9 +1,14 @@
 const { Schema, model } = require("mongoose");
-const mongoosePaginate = require('mongoose-paginate-v2');
+const mongoosePaginate = require("mongoose-paginate-v2");
 
 const STATUS_ENUM = {
   ACTIVE: "ACTIVE",
   ERROR: "ERROR",
+};
+
+const LANG_ENUM = {
+  en: "en",
+  bm: "bm",
 };
 
 const publisherSchema = new Schema(
@@ -15,6 +20,11 @@ const publisherSchema = new Schema(
     url: {
       type: String,
       required: true,
+    },
+    language: {
+      type: String,
+      required: true,
+      enum: Object.values(LANG_ENUM),
     },
     defaultImage: {
       type: String,

@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const mongoosePaginate = require('mongoose-paginate-v2');
+const mongoosePaginate = require("mongoose-paginate-v2");
 
 const { ObjectId } = Schema.Types;
 require("./publisher.model");
@@ -40,6 +40,9 @@ const articleSchema = new Schema(
     publishedAt: {
       type: Date,
       required: false,
+    },
+    language: {
+      type: String,
     },
   },
   { timestamps: true },

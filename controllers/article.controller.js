@@ -1,9 +1,13 @@
 const { ArticleModel } = require("../models/article.model");
 
 async function getArticles(req, res) {
-  const { page, limit = 10 } = req.query;
+  const { page, limit = 10, lang } = req.query;
   const filter = {};
   let projection = {};
+
+  if (lang) {
+    filter.language = lang;
+  }
 
   if (!req.user?.isAdmin) {
     filter.isDeleted = false;

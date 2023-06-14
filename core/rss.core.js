@@ -31,6 +31,7 @@ async function saveRSSData(publisher, rssItems) {
       description: item.contentSnippet,
       publisher: publisher._id,
       guid: item.guid,
+      language: publisher.language,
     },
     { upsert: true },
   ));

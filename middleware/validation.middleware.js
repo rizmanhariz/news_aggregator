@@ -60,6 +60,7 @@ async function validateGetArticles(req, res, next) {
   const inputSchema = Joi.object({
     page: Joi.number().integer().required(),
     limit: Joi.number().integer().required(),
+    lang: Joi.string(),
   });
 
   try {
