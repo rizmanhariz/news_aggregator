@@ -30,7 +30,6 @@ function sendErrorResponse(err, req, res, next) {
   };
   if (err instanceof AppError) {
     httpCode = err.httpCode;
-    logger.info(err);
     if (err.errorCode) {
       errorResponse.errorCode = err.errorCode;
     }
