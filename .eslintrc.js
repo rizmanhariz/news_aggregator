@@ -20,5 +20,11 @@ module.exports = {
         packageDir: __dirname,
       },
     ],
+    "no-underscore-dangle": [
+      "error",
+      {
+        allow: ["_id"],
+      },
+    ],
   },
 };
