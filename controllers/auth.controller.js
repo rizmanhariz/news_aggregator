@@ -11,10 +11,12 @@ function hashPassword(inputPassword) {
 }
 
 function signJWT(inputData) {
+  const exp = addMinutes(new Date(), 60).getTime();
+  console.log(exp);
   const token = jwt.sign(
     {
       ...inputData,
-      exp: addMinutes(new Date(), 60).getDate(),
+      exp,
     },
     process.env.JWT_SECRET,
   );
