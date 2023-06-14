@@ -10,6 +10,10 @@ const articleSchema = new Schema(
       type: String,
       required: true,
     },
+    guid: {
+      type: String,
+      required: true,
+    },
     url: {
       type: String,
       required: true,
@@ -35,7 +39,7 @@ const articleSchema = new Schema(
     },
     publishedAt: {
       type: Date,
-      required: true,
+      required: false,
     },
   },
   { timestamps: true },
