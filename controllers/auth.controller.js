@@ -30,13 +30,7 @@ async function login(req, res) {
   if (!existingUser) {
     throw new AppError(400, "AUTH001", true, "INVALID CREDENTIALS");
   }
-  const newUser = new UserModel({
-    username,
-    password: hashedPassword,
-  });
-  await newUser.save();
-
-  const token = signJWT({ id: newUser._id.toString() });
+  const token = signJWT({ id: existingUser._id.toString() });
   return res.send({ token });
 }
 
