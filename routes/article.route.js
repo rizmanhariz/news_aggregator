@@ -1,12 +1,18 @@
 const express = require("express");
-const articleController = require("../controllers/publisher.controller");
+const asyncHandler = require("express-async-handler");
+const articleController = require("../controllers/article.controller");
+const { validateGetArticles } = require("../middleware/validation.middleware");
 
 const articleRouter = express.Router();
 
 // get list of articles
-articleRouter.get("/", articleController.getArticles);
+articleRouter.get(
+  "/",
+  validateGetArticles,
+  asyncHandler(articleController.getArticles),
+);
 
 // get article content
-articleRouter.get("/:id", articleController.getSingleArticle);
+articleRouter.get("/:id", asyncHandler(articleController.getSingleArticle));
 
 module.exports = articleRouter;

@@ -1,11 +1,10 @@
 const { ObjectId } = require("mongoose").Types;
 const { PublisherModel } = require("../models/publisher.model");
-const { getMongoPagination } = require("../helpers/query.helper");
 const { AppError } = require("../core/error.core");
 
 async function getPublishers(req, res) {
-  const { name } = req.query;
-  const queryFilter = { };
+  const { name, page, limit } = req.query;
+  const queryFilter = {};
   if (name) {
     queryFilter.name = { $regex: name, $options: "i" };
   }
@@ -17,13 +16,12 @@ async function getPublishers(req, res) {
     queryFilter.isActive = true;
   }
 
-  const publisherData = await PublisherModel.find(
-    queryFilter,
+  const publisherData = await PublisherModel.paginate(queryFilter, {
+    page,
+    limit,
     projection,
-    {
-      ...getMongoPagination(req.query),
-    },
-  );
+    sort: { createdAt: -1 },
+  });
   res.send(publisherData);
 }
 

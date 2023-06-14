@@ -25,6 +25,7 @@
     "joi": "^17.9.2",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.2.4",
+    "mongoose-paginate-v2": "^1.7.1",
     "node-cron": "^3.0.2",
     "rss-parser": "^3.13.0"
   }

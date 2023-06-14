@@ -47,8 +47,8 @@ function sendErrorResponse(err, req, res, next) {
       }
     }
   }
-  logger.info("final http", httpCode);
-  logger.info("error res", errorResponse);
+
+  logger.error(err);
 
   res.status(httpCode).send(errorResponse);
 }

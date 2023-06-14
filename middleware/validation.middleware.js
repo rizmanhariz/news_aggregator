@@ -3,8 +3,8 @@ const { AppError } = require("../core/error.core");
 
 async function validateGetPublishers(req, res, next) {
   const inputSchema = Joi.object({
-    page: Joi.number().integer(),
-    limit: Joi.number().integer(),
+    page: Joi.number().integer().required(),
+    limit: Joi.number().integer().required(),
     name: Joi.string(),
   });
 
@@ -56,8 +56,26 @@ async function validateCreatePublisher(req, res, next) {
   return next();
 }
 
+async function validateGetArticles(req, res, next) {
+  const inputSchema = Joi.object({
+    page: Joi.number().integer().required(),
+    limit: Joi.number().integer().required(),
+  });
+
+  try {
+    await inputSchema.validateAsync(req.query, {
+      abortEarly: false,
+    });
+  } catch (err) {
+    return next(new AppError(400, "INPUT001", false, err.message));
+  }
+
+  return next();
+}
+
 module.exports = {
   validateGetPublishers,
   validateLogin,
   validateCreatePublisher,
+  validateGetArticles,
 };

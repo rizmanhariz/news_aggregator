@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const STATUS_ENUM = {
   ACTIVE: "ACTIVE",
@@ -40,6 +41,8 @@ const publisherSchema = new Schema(
   },
   { timestamps: true },
 );
+
+publisherSchema.plugin(mongoosePaginate);
 
 const PublisherModel = model("publisher", publisherSchema);
 
