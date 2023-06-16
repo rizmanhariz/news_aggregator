@@ -1,5 +1,9 @@
 const Joi = require("joi");
 const { AppError } = require("../core/error.core");
+const {
+  LANG_ENUM,
+  STATUS_ENUM,
+} = require("../models/publisher.model");
 
 async function validateGetPublishers(req, res, next) {
   const inputSchema = Joi.object({
@@ -39,10 +43,27 @@ async function validateLogin(req, res, next) {
 
 async function validateCreatePublisher(req, res, next) {
   const inputSchema = Joi.object({
-    name: Joi.string().required(),
-    url: Joi.string().required(),
-    rss_url: Joi.string().required(),
-    isActive: Joi.boolean().required(),
+    name: Joi.string()
+      .required(),
+    url: Joi.string()
+      .required(),
+    rss_url: Joi.string()
+      .required(),
+    isActive: Joi.boolean()
+      .required(),
+    imageScraperMeta: Joi.object({
+      selector: Joi.string()
+        .required(),
+      attribute: Joi.string()
+        .required(),
+      postProcessingRegex: Joi.string()
+        .optional(),
+    }).required(),
+    language: Joi.string()
+      .valid(...Object.values(LANG_ENUM))
+      .required(),
+    status: Joi.string()
+      .valid(...Object.values(STATUS_ENUM)),
   });
 
   try {

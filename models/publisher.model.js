@@ -61,8 +61,8 @@ const publisherSchema = new Schema(
       enum: Object.values(STATUS_ENUM),
     },
     imageScraperMeta: {
-      type: imageScraperMetaSchema
-    }
+      type: imageScraperMetaSchema,
+    },
   },
   { timestamps: true },
 );
@@ -73,4 +73,6 @@ const PublisherModel = model("publisher", publisherSchema);
 
 module.exports = {
   PublisherModel,
+  LANG_ENUM,
+  STATUS_ENUM,
 };
