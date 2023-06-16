@@ -1,4 +1,5 @@
 const logger = require("./log.core");
+const errorEnum = require("./errors.json");
 
 class AppError {
   constructor(
@@ -13,14 +14,6 @@ class AppError {
     this.customMessage = customMessage;
   }
 }
-
-const errorEnum = {
-  AUTH001: "UNAUTHORIZED",
-  AUTH002: "USERNAME EXISTS",
-
-  INPUT001: "INVALID INPUT",
-  INPUT002: "DID NOT FIND RESOURCE",
-};
 
 function sendErrorResponse(err, req, res, next) {
   let httpCode = 500;
