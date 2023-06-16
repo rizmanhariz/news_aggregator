@@ -1,15 +1,15 @@
 const parseISO = require("date-fns/parseISO");
 const Parser = require("rss-parser");
+const randomUserAgent = require("random-useragent");
 const logger = require("./log.core");
-const UserAgent = require("user-agents");
 const { PublisherModel } = require("../models/publisher.model");
 const { ArticleModel } = require("../models/article.model");
 
 async function getRSSData(publisher) {
   try {
-    const userAgent = new UserAgent({platform: "Win32" });
+    const userAgent = randomUserAgent.getRandom((ua) => ua.browserName === "Chrome" && ua.osName === "Windows");
     const parser = new Parser({
-      headers: { "User-Agent": userAgent.toString() },
+      headers: { "User-Agent": userAgent },
     });
     const feedData = await parser.parseURL(publisher.rss_url);
     return feedData;

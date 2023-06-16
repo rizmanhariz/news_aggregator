@@ -10,7 +10,7 @@ module.exports = {
     ecmaVersion: "latest",
   },
   rules: {
-    quotes: ["error", "double"],
+    quotes: ["error", "double", { avoidEscape: true }],
     "import/no-extraneous-dependencies": [
       "error",
       {
