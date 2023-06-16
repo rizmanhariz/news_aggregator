@@ -11,6 +11,18 @@ const LANG_ENUM = {
   bm: "bm",
 };
 
+const imageScraperMetaSchema = new Schema({
+  selector: {
+    type: String,
+  },
+  attribute: {
+    type: String,
+  },
+  postProcessingRegex: {
+    type: String,
+  },
+});
+
 const publisherSchema = new Schema(
   {
     name: {
@@ -48,6 +60,9 @@ const publisherSchema = new Schema(
       default: STATUS_ENUM.ACTIVE,
       enum: Object.values(STATUS_ENUM),
     },
+    imageScraperMeta: {
+      type: imageScraperMetaSchema
+    }
   },
   { timestamps: true },
 );

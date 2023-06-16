@@ -18,9 +18,9 @@ async function getCoverImageURL(targetUrl, selectorOptions) {
   const myBrowser = await getBrowser();
   let page;
   const {
-    selectorString,
+    selector,
     postProcessingRegex,
-    attributeString,
+    attribute,
   } = selectorOptions;
   try {
     page = await myBrowser.newPage();
@@ -29,11 +29,11 @@ async function getCoverImageURL(targetUrl, selectorOptions) {
     await page.setUserAgent(newUserAgent);
     await page.goto(targetUrl);
 
-    await page.waitForSelector(selectorString, { timeout: 5000 });
+    await page.waitForSelector(selector, { timeout: 5000 });
     let url = await page.$eval(
-      selectorString,
+      selector,
       (elem, attributeToFind) => elem.getAttribute(attributeToFind),
-      attributeString,
+      attribute,
     );
     if (postProcessingRegex) {
       const matched = url.match(postProcessingRegex);
@@ -44,6 +44,9 @@ async function getCoverImageURL(targetUrl, selectorOptions) {
     return url;
   } catch (err) {
     log.error("Puppeteer error", err);
+    if (page) {
+      page.screenshot({path: `./error_${new Date().getTime()}.png`});
+    }
     return null;
   } finally {
     if (page) {
