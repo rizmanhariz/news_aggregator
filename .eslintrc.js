@@ -26,5 +26,7 @@ module.exports = {
         allow: ["_id"],
       },
     ],
+    "no-restricted-syntax": ["off"],
+    "no-await-in-loop": ["off"],
   },
 };
