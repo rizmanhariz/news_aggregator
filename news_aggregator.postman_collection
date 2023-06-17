@@ -1,0 +1,330 @@
+{
+	"info": {
+		"_postman_id": "43a99d7d-43d0-4444-88d7-b8aa45fe525b",
+		"name": "Lumi Base",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8889856"
+	},
+	"item": [
+		{
+			"name": "publisher",
+			"item": [
+				{
+					"name": "get all publishers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/publisher/?page=1&limit=10",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"publisher",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "name",
+									"value": "beri",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get One publisher",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/publisher/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"publisher",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6489ba7a937ac8eb16f9246c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create publisher",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test\",\r\n    \"url\": \"https://www.Test.com.my/\",\r\n    \"rss_url\": \"https://www.Test.com.my/feed\",\r\n    \"isActive\": true,\r\n    \"imageScraperMeta\": {\r\n        \"selector\": \"kweh\",\r\n        \"attribute\": \"kweh\"\r\n    },\r\n    \"language\": \"en\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/publisher/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"publisher",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update publisher",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test\",\r\n    \"url\": \"https://www.Test.com.my/\",\r\n    \"rss_url\": \"https://www.Test.com.my/feed\",\r\n    \"isActive\": true,\r\n    \"imageScraperMeta\": {\r\n        \"selector\": \"kweh\",\r\n        \"attribute\": \"kweh\"\r\n    },\r\n    \"language\": \"en\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/publisher/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"publisher",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "64897f69710d9ccfc89cd74d"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const body = pm.response.json();\r",
+									"console.log(body);\r",
+									"if (body.token) {\r",
+									"    pm.environment.set(\"token\", body.token);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"rizman\",\r\n    \"password\": \"rizman\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"rizman\",\r\n    \"password\": \"rizman\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/register",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "article",
+			"item": [
+				{
+					"name": "get articles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/article/?page=1&limit=10&lang=bm",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"article",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "lang",
+									"value": "bm"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get single article",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/article/:id",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"article",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6489c72d16fa5aaeacd325fb"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "test server",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
