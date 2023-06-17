@@ -7,9 +7,19 @@ This project is a purely backend project.
 Built on NodeJs, Express & MongoDb
 
 ## Deployment
-1. Replace the ```.env``` file with the required secrets. 
+1. Replace values the `.env` file with the required secrets. 
 2. Install nodeJs
-3. run ```npm run deploy-prod```
+3. run `npm run deploy-prod`
+
+## API documentation
+Please refer to the postman collection in `news_aggregator.postman_collection`
+
+## Data import
+To manually trigger scraping - run `node scrap.cron.js`; 
+Scaper will pull all data from rss feeds but will only scrape websites for articles from the last `X` days
+Period can be specified in the `.env` file using the `PAST_DAYS` key
 
 ## Future
-I may add a frontend to pull the data and review, if I have time.
+1. I may add a frontend to pull the data and review data.
+2. Clean up image saving - use streams instead of saving locally
+3. push 
