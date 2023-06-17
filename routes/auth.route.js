@@ -13,8 +13,8 @@ articleRouter.post("/login", validateLogin, asyncHandler(authController.login));
 articleRouter.post(
   "/register",
   validateLogin,
-  checkUserLoggedIn,
   authenticateUser,
+  checkUserLoggedIn,
   asyncHandler(authController.register),
 );
 

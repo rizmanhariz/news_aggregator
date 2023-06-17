@@ -46,9 +46,7 @@ async function register(req, res) {
     password: hashedPassword,
   });
   await newUser.save();
-
-  const token = signJWT({ id: newUser._id.toString() });
-  return res.send({ token });
+  return res.send("SUCCESS");
 }
 
 module.exports = {
