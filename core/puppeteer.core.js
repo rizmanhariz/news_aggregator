@@ -1,5 +1,7 @@
 const puppeteer = require("puppeteer");
 const randomUserAgent = require("random-useragent");
+const { basename, join } = require("path");
+const fs = require("fs").promises;
 const log = require("./log.core");
 
 let browser;
@@ -25,6 +27,7 @@ async function getBrowser() {
  * @param {string} [inputParams.imageScraperOptions.postProcessingRegex] - regex to format image url
  * @param {boolean} [toGetTextBody] - flag to scrape article text content
  * @param {object} [textScraperOption] - options for scraping the text
+ * @param {boolean} [toDownloadCoverImage] - flag to download the image to local
  */
 async function scrapeArticleWebpage({
   targetUrl,
@@ -32,6 +35,7 @@ async function scrapeArticleWebpage({
   imageScraperOptions,
   toGetTextBody,
   textScraperOption,
+  toDownloadCoverImage,
 }) {
   const myBrowser = await getBrowser();
   let page;
@@ -42,6 +46,18 @@ async function scrapeArticleWebpage({
     const newUserAgent = randomUserAgent.getRandom((ua) => ua.browserName === "Chrome" && ua.osName === "Windows");
     await page.setUserAgent(newUserAgent);
     await page.goto(targetUrl);
+
+    if (toGetTextBody) {
+      const {
+        selector,
+      } = textScraperOption;
+      await page.waitForSelector(selector, { timeout: 5000 });
+      const text = await page.$eval(
+        selector,
+        (elem) => elem.innerHtml,
+      );
+      retObj.text = text;
+    }
 
     if (toGetCoverImage) {
       const {
@@ -63,18 +79,15 @@ async function scrapeArticleWebpage({
         }
       }
       retObj.url = url;
-    }
 
-    if (toGetTextBody) {
-      const {
-        selector,
-      } = textScraperOption;
-      await page.waitForSelector(selector, { timeout: 5000 });
-      const text = await page.$eval(
-        selector,
-        (elem) => elem.innerHtml,
-      );
-      retObj.text = text;
+      // this gets the actual file
+      if (toDownloadCoverImage) {
+        const imageResponse = await page.goto(retObj.url);
+        const imageBuffer = await imageResponse.buffer();
+        const localPath = join(process.env.IMAGE_SAVE_PATH, `${new Date().getTime()}_${basename(retObj.url)}`);
+        await fs.writeFile(localPath, imageBuffer);
+        retObj.localPath = localPath;
+      }
     }
 
     return retObj;

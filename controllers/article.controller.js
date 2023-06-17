@@ -42,6 +42,7 @@ async function getSingleArticle(req, res) {
       content: 1,
       publishedAt: 1,
       language: 1,
+      s3Path: 1,
     };
   }
   const articleData = await ArticleModel.findById(req.params.id, projection).populate("publisher", "name defaultImage");

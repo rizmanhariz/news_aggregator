@@ -4,6 +4,10 @@ const mongoosePaginate = require("mongoose-paginate-v2");
 const { ObjectId } = Schema.Types;
 require("./publisher.model");
 
+function getS3PublicLink(s3Path) {
+  return `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${s3Path}`;
+}
+
 const articleSchema = new Schema(
   {
     title: {
@@ -44,8 +48,12 @@ const articleSchema = new Schema(
     language: {
       type: String,
     },
+    s3Path: {
+      type: String,
+      get: getS3PublicLink,
+    },
   },
-  { timestamps: true },
+  { timestamps: true, toJSON: { getters: true } },
 );
 articleSchema.plugin(mongoosePaginate);
 articleSchema.index({ publisher: 1, guid: 1 }, { unique: true });

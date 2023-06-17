@@ -1,9 +1,12 @@
+const path = require("path");
+const fs = require("fs");
 const { subDays, startOfDay } = require("date-fns");
 const logger = require("../core/log.core");
 const { PublisherModel, STATUS_ENUM } = require("../models/publisher.model");
 const { ArticleModel } = require("../models/article.model");
 const { getRSSData, saveRSSData } = require("../core/rss.core");
 const { scrapeArticleWebpage } = require("../core/puppeteer.core");
+const { uploadObjFromLocal } = require("../core/s3.core");
 
 async function scrapePublishers() {
   logger.info("scrapePublishers", "starting");
@@ -52,6 +55,7 @@ async function scrapePublishers() {
     {
       url: 1,
       publisher: 1,
+      guid: 1,
     },
     { limit: 3, sort: { publishedAt: -1 } },
   ).populate("publisher", "imageScraperMeta");
@@ -72,11 +76,29 @@ async function scrapePublishers() {
       });
 
       if (scrapedData) {
+        const articleUpdate = {
+          coverImage: scrapedData.url,
+        };
+        // upload to S3
+        if (scrapedData.localPath) {
+          try {
+            // should be a better way to do this without saving to local
+            const key = `${article._id.toString()}_${article.guid}${path.extname(scrapedData.localPath)}`;
+            await uploadObjFromLocal(key, scrapedData.localPath);
+            articleUpdate.s3Path = key;
+          } catch (err) {
+            // do nothing
+          } finally {
+            // delete the local file
+            if (fs.existsSync(scrapedData.localPath)) {
+              fs.promises.rm(scrapedData.localPath);
+            }
+          }
+        }
+
         await ArticleModel.findOneAndUpdate(
           { _id: article._id },
-          {
-            coverImage: scrapedData.url,
-          },
+          articleUpdate,
         );
       }
     }
