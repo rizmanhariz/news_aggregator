@@ -2,7 +2,7 @@ const express = require("express");
 const asyncHandler = require("express-async-handler");
 const authController = require("../controllers/auth.controller");
 const { validateLogin } = require("../middleware/validation.middleware");
-const { authenticateUser } = require("../middleware/auth.middleware");
+const { authenticateUser, checkUserLoggedIn } = require("../middleware/auth.middleware");
 
 const articleRouter = express.Router();
 
@@ -10,6 +10,12 @@ const articleRouter = express.Router();
 articleRouter.post("/login", validateLogin, asyncHandler(authController.login));
 
 // get article content
-articleRouter.post("/register", validateLogin, authenticateUser, asyncHandler(authController.register));
+articleRouter.post(
+  "/register",
+  validateLogin,
+  checkUserLoggedIn,
+  authenticateUser,
+  asyncHandler(authController.register),
+);
 
 module.exports = articleRouter;

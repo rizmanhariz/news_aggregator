@@ -5,7 +5,7 @@ const validationMiddleware = require("../middleware/validation.middleware");
 const publisherController = require("../controllers/publisher.controller");
 
 const publisherRouter = express.Router();
-
+publisherRouter.use(authenticateUser);
 publisherRouter.get(
   "/",
   validationMiddleware.validateGetPublishers,
@@ -13,7 +13,6 @@ publisherRouter.get(
 );
 
 // admin only endpoints
-publisherRouter.use(authenticateUser);
 publisherRouter.use(checkIsAdmin);
 publisherRouter.get(
   "/:id",
