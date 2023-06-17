@@ -16,6 +16,7 @@ async function getArticles(req, res) {
       url: 1,
       coverImage: 1,
       publishedAt: 1,
+      language: 1,
     };
   }
   const articleData = await ArticleModel.paginate(filter, {
@@ -40,6 +41,7 @@ async function getSingleArticle(req, res) {
       description: 1,
       content: 1,
       publishedAt: 1,
+      language: 1,
     };
   }
   const articleData = await ArticleModel.findById(req.params.id, projection).populate("publisher", "name defaultImage");
