@@ -3,6 +3,16 @@ const Parser = require("rss-parser");
 const randomUserAgent = require("random-useragent");
 const { ArticleModel } = require("../models/article.model");
 
+/**
+ * @typedef {object} rssResponse
+ * @property {array} items
+ */
+/**
+ * gets rssData from input url
+ * @param {object} publisher
+ * @param {string} publisher.rss_url - url for rss scraping
+ * @returns {rssResponse}
+ */
 async function getRSSData(publisher) {
   const userAgent = randomUserAgent.getRandom((ua) => ua.browserName === "Chrome" && ua.osName === "Windows");
   const parser = new Parser({
@@ -12,6 +22,20 @@ async function getRSSData(publisher) {
   return feedData;
 }
 
+/**
+ * @typedef {object} rssItems
+ * @param {string} guid
+ * @param {string} title
+ * @param {string} contentSnippet
+ * @param {string} link
+ * @param {string} isoDate
+ * @param {string} content:encoded
+ */
+/**
+ * saves rssData into article
+ * @param {object} publisher
+ * @param {array<rssItems>} rssItems
+ */
 async function saveRSSData(publisher, rssItems) {
   const promiseArray = rssItems.map(async (item) => ArticleModel.findOneAndUpdate(
     {

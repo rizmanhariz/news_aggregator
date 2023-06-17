@@ -14,6 +14,18 @@ async function getBrowser() {
   return browser;
 }
 
+/**
+ * Function to scrape article web page for image or textBody
+ * @param {*} inputParams
+ * @param {string} inputParams.targetUrl - url of article
+ * @param {boolean} [inputParams.toGetCoverImage] - flag to scrape cover image
+ * @param {object} [inputParams.imageScraperOptions] - options for scraping image
+ * @param {string} [inputParams.imageScraperOptions.selector] - selector for element with image
+ * @param {string} [inputParams.imageScraperOptions.attribute] - attribute that hols image url
+ * @param {string} [inputParams.imageScraperOptions.postProcessingRegex] - regex to format image url
+ * @param {boolean} [toGetTextBody] - flag to scrape article text content
+ * @param {object} [textScraperOption] - options for scraping the text
+ */
 async function scrapeArticleWebpage({
   targetUrl,
   toGetCoverImage,

@@ -1,6 +1,13 @@
 const logger = require("./log.core");
 const errorEnum = require("./errors.json");
 
+/**
+ * Sets up db connections
+ * @param {number} [httpCode] - httpCode returned in response
+ * @param {string} [errorCode] - primary error message
+ * @param {boolean} [joinMessage] - join additional message to primary message
+ * @param {string} [customMessage] - additional message
+ */
 class AppError {
   constructor(
     httpCode = 500,
@@ -15,6 +22,7 @@ class AppError {
   }
 }
 
+/** Middleware to handle any errors that bubble up */
 function sendErrorResponse(err, req, res, next) {
   let httpCode = 500;
   const errorResponse = {
