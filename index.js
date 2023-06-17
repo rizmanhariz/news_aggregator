@@ -4,6 +4,7 @@ const helmet = require("helmet");
 const cron = require("node-cron");
 const { sendErrorResponse } = require("./core/error.core");
 const { connectMongoDB } = require("./core/db.core");
+const { scrapePublishers } = require("./jobs/rss.jobs");
 const logger = require("./core/log.core");
 
 // define routers
@@ -49,5 +50,9 @@ logger.info(`Server live on PORT: ${PORT}`);
 // * * * * * *
 cron.schedule("0 0 * * * *", () => {
   // runs hourly to scrape apis
-  
+  try {
+    await scrapePublishers();
+  } catch (err) {
+    logger.error("CRON-SCRAPE", err);
+  }
 });
