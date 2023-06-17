@@ -4,13 +4,13 @@ const authController = require("../controllers/auth.controller");
 const { validateLogin } = require("../middleware/validation.middleware");
 const { authenticateUser, checkUserLoggedIn } = require("../middleware/auth.middleware");
 
-const articleRouter = express.Router();
+const authRouter = express.Router();
 
 // get list of articles
-articleRouter.post("/login", validateLogin, asyncHandler(authController.login));
+authRouter.post("/login", validateLogin, asyncHandler(authController.login));
 
 // get article content
-articleRouter.post(
+authRouter.post(
   "/register",
   validateLogin,
   authenticateUser,
@@ -18,4 +18,4 @@ articleRouter.post(
   asyncHandler(authController.register),
 );
 
-module.exports = articleRouter;
+module.exports = authRouter;
