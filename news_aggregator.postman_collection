@@ -17,7 +17,8 @@
 							{
 								"key": "token",
 								"value": "{{token}}",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"url": {
@@ -46,7 +47,251 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "get all publishers as admin",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/publisher/?page=1&limit=10",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"publisher",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "name",
+											"value": "beri",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2528"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9e0-9tJPt28LCKxI8ScJMCWLyIwX3q0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 Jun 2023 06:49:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"docs\": [\n        {\n            \"_id\": \"648c82dcdd32257491860a7a\",\n            \"name\": \"Test\",\n            \"url\": \"https://www.Test.com.my/\",\n            \"language\": \"en\",\n            \"rss_url\": \"https://www.Test.com.my/feed\",\n            \"isActive\": true,\n            \"retryAttempt\": 4,\n            \"status\": \"ERROR\",\n            \"imageScraperMeta\": {\n                \"selector\": \"kweh\",\n                \"attribute\": \"kweh\",\n                \"_id\": \"648c82dcdd32257491860a7b\"\n            },\n            \"createdAt\": \"2023-06-16T15:42:20.349Z\",\n            \"updatedAt\": \"2023-06-17T01:07:30.115Z\",\n            \"__v\": 0,\n            \"isDeleted\": false\n        },\n        {\n            \"_id\": \"6489ba7a937ac8eb16f9246c\",\n            \"name\": \"Utusan\",\n            \"url\": \"https://www.utusan.com.my/\",\n            \"rss_url\": \"http://www.utusan.com.my/feed\",\n            \"isActive\": true,\n            \"retryAttempt\": 0,\n            \"status\": \"ACTIVE\",\n            \"createdAt\": \"2023-06-14T13:02:50.725Z\",\n            \"updatedAt\": \"2023-06-17T06:12:42.701Z\",\n            \"__v\": 0,\n            \"language\": \"bm\",\n            \"selectorString\": \"div#content img.attachment-full\",\n            \"evaluateString\": \"document.querySelector(\\\"div#content img.attachment-full\\\").getAttribute(\\\"src\\\")\",\n            \"imageScraperMeta\": {\n                \"selector\": \"div#content img.attachment-full\",\n                \"attribute\": \"src\",\n                \"_id\": \"648d5792ba3f0e4bf80b283a\"\n            },\n            \"isDeleted\": false\n        },\n        {\n            \"_id\": \"6489ba5c937ac8eb16f92469\",\n            \"name\": \"SAYS\",\n            \"url\": \"https://says.com/my/\",\n            \"rss_url\": \"https://says.com/my/rss\",\n            \"isActive\": true,\n            \"retryAttempt\": 0,\n            \"status\": \"ACTIVE\",\n            \"createdAt\": \"2023-06-14T13:02:20.602Z\",\n            \"updatedAt\": \"2023-06-17T06:12:40.218Z\",\n            \"__v\": 0,\n            \"language\": \"en\",\n            \"selectorString\": \"div.story-cover-image\",\n            \"evaluateString\": \"document.querySelector(\\\"div.story-cover-image\\\").getAttribute(\\\"style\\\")\",\n            \"postProcessingRegex\": \"/(?<=url\\\\(').*(?='\\\\))/\",\n            \"imageScraperMeta\": {\n                \"selector\": \"div.story-cover-image\",\n                \"attribute\": \"style\",\n                \"postProcessingRegex\": \"/(?<=url\\\\(').*(?='\\\\))/\",\n                \"_id\": \"648d5792ba3f0e4bf80b283b\"\n            },\n            \"isDeleted\": false\n        },\n        {\n            \"_id\": \"64897f69710d9ccfc89cd74d\",\n            \"name\": \"kweh\",\n            \"url\": \"kwe\",\n            \"rss_url\": \"kweh\",\n            \"isActive\": true,\n            \"retryAttempt\": 4,\n            \"status\": \"ERROR\",\n            \"__v\": 0,\n            \"createdAt\": \"2023-06-14T08:50:49.218Z\",\n            \"updatedAt\": \"2023-06-17T01:07:29.316Z\",\n            \"isDeleted\": false\n        },\n        {\n            \"_id\": \"6489594db7c25adcded0b8f5\",\n            \"name\": \"Berita Harian\",\n            \"url\": \"https://www.bharian.com.my/\",\n            \"rss_url\": \"https://www.bharian.com.my/feed\",\n            \"isActive\": true,\n            \"retryAttempt\": 0,\n            \"status\": \"ACTIVE\",\n            \"__v\": 0,\n            \"createdAt\": \"2023-06-14T06:08:13.773Z\",\n            \"updatedAt\": \"2023-06-17T06:12:43.828Z\",\n            \"language\": \"bm\",\n            \"selectorString\": \"div.field-featured-image img\",\n            \"evaluateString\": \"document.querySelector(\\\"div.field-featured-image img\\\").getAttribute(\\\"src\\\")\",\n            \"imageScraperMeta\": {\n                \"selector\": \"div.field-featured-image img\",\n                \"attribute\": \"src\",\n                \"_id\": \"648d5792ba3f0e4bf80b283c\"\n            },\n            \"isDeleted\": false\n        }\n    ],\n    \"totalDocs\": 5,\n    \"limit\": 10,\n    \"totalPages\": 1,\n    \"page\": 1,\n    \"pagingCounter\": 1,\n    \"hasPrevPage\": false,\n    \"hasNextPage\": false,\n    \"prevPage\": null,\n    \"nextPage\": null\n}"
+						},
+						{
+							"name": "get all publishers as user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/publisher/?page=1&limit=10",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"publisher",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "name",
+											"value": "beri",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "550"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"226-FWmYpAr6eJbMiMp+YHFYqjzmW3M\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 Jun 2023 06:50:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"docs\": [\n        {\n            \"_id\": \"648c82dcdd32257491860a7a\",\n            \"name\": \"Test\",\n            \"url\": \"https://www.Test.com.my/\"\n        },\n        {\n            \"_id\": \"6489ba7a937ac8eb16f9246c\",\n            \"name\": \"Utusan\",\n            \"url\": \"https://www.utusan.com.my/\"\n        },\n        {\n            \"_id\": \"6489ba5c937ac8eb16f92469\",\n            \"name\": \"SAYS\",\n            \"url\": \"https://says.com/my/\"\n        },\n        {\n            \"_id\": \"64897f69710d9ccfc89cd74d\",\n            \"name\": \"kweh\",\n            \"url\": \"kwe\"\n        },\n        {\n            \"_id\": \"6489594db7c25adcded0b8f5\",\n            \"name\": \"Berita Harian\",\n            \"url\": \"https://www.bharian.com.my/\"\n        }\n    ],\n    \"totalDocs\": 5,\n    \"limit\": 10,\n    \"totalPages\": 1,\n    \"page\": 1,\n    \"pagingCounter\": 1,\n    \"hasPrevPage\": false,\n    \"hasNextPage\": false,\n    \"prevPage\": null,\n    \"nextPage\": null\n}"
+						}
+					]
 				},
 				{
 					"name": "Get One publisher",
@@ -74,9 +319,123 @@
 									"value": "6489ba7a937ac8eb16f9246c"
 								}
 							]
-						}
+						},
+						"description": "Get a single publisher"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get One publisher as admin",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/publisher/:id",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"publisher",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6489ba7a937ac8eb16f9246c"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "567"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"237-ZNpiqdZzRkJerBXxv2Y6Mo6OwuM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 Jun 2023 06:50:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"6489ba7a937ac8eb16f9246c\",\n    \"name\": \"Utusan\",\n    \"url\": \"https://www.utusan.com.my/\",\n    \"rss_url\": \"http://www.utusan.com.my/feed\",\n    \"isActive\": true,\n    \"retryAttempt\": 0,\n    \"status\": \"ACTIVE\",\n    \"createdAt\": \"2023-06-14T13:02:50.725Z\",\n    \"updatedAt\": \"2023-06-17T06:12:42.701Z\",\n    \"__v\": 0,\n    \"language\": \"bm\",\n    \"selectorString\": \"div#content img.attachment-full\",\n    \"evaluateString\": \"document.querySelector(\\\"div#content img.attachment-full\\\").getAttribute(\\\"src\\\")\",\n    \"imageScraperMeta\": {\n        \"selector\": \"div#content img.attachment-full\",\n        \"attribute\": \"src\",\n        \"_id\": \"648d57c3ba3f0e4bf80b2841\"\n    },\n    \"isDeleted\": false\n}"
+						}
+					]
 				},
 				{
 					"name": "create publisher",
@@ -124,7 +483,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Test\",\r\n    \"url\": \"https://www.Test.com.my/\",\r\n    \"rss_url\": \"https://www.Test.com.my/feed\",\r\n    \"isActive\": true,\r\n    \"imageScraperMeta\": {\r\n        \"selector\": \"kweh\",\r\n        \"attribute\": \"kweh\"\r\n    },\r\n    \"language\": \"en\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Test\",\r\n    \"url\": \"https://www.Test.com.my/\",\r\n    \"rss_url\": \"https://www.Test.com.my/feed\",\r\n    \"isDeleted\": false,\r\n    \"imageScraperMeta\": {\r\n        \"selector\": \"kweh\",\r\n        \"attribute\": \"kweh\"\r\n    },\r\n    \"language\": \"en\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -205,7 +564,117 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"rizman\",\r\n    \"password\": \"rizman\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/auth/login",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "187"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"bb-mjrkGT8G4C8Xzv3NCtHjnCvTmVg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 Jun 2023 06:52:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ODk3OWU1MmMyMzU3MDUzYWExOTY0MyIsImV4cCI6MTY4Njk4ODM0Nzc5NSwiaWF0IjoxNjg2OTg0NzQ3fQ.TbZfOsGFsDwTAsv3W_KQOiwtRgkYot26o2qsQoLnZHM\"\n}"
+						}
+					]
 				},
 				{
 					"name": "register",
@@ -220,7 +689,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"rizman\",\r\n    \"password\": \"rizman\"\r\n}",
+							"raw": "{\r\n    \"username\": \"LumiNews\",\r\n    \"password\": \"LumiNews\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -238,7 +707,123 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"LumiNews\",\r\n    \"password\": \"LumiNews\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/auth/register",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "7"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7-gFw9aUPkrb4JBgwx0K+SLEMaCno\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 Jun 2023 06:55:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "SUCCESS"
+						}
+					]
 				}
 			]
 		},
@@ -281,13 +866,140 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "get articles",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/article/?page=1&limit=10&lang=bm",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"article",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "lang",
+											"value": "bm"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "5146"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"141a-/wO0NLj+0eDezzTy3yRqS2/q3Lo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 Jun 2023 07:00:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"docs\": [\n        {\n            \"_id\": \"648d4ee02aa4f0805813be71\",\n            \"publisher\": {\n                \"_id\": \"6489594db7c25adcded0b8f5\",\n                \"name\": \"Berita Harian\"\n            },\n            \"language\": \"bm\",\n            \"publishedAt\": \"2023-06-17T14:06:31.000Z\",\n            \"title\": \"9 wartawan diserang di utara Kosovo\",\n            \"url\": \"https://www.bharian.com.my/dunia/eropah/2023/06/1115582/9-wartawan-diserang-di-utara-kosovo\",\n            \"coverImage\": \"https://assets.bharian.com.my/images/articles/SERBS_VIOLENCE-SERBIA_1686981981.jpg\",\n            \"s3Path\": \"https://rizman-news-aggregator.s3.ap-southeast-1.amazonaws.com/648d4ee02aa4f0805813be71_1115582.jpg\",\n            \"id\": \"648d4ee02aa4f0805813be71\"\n        },\n        {\n            \"_id\": \"648d4ee02aa4f0805813be6f\",\n            \"publisher\": {\n                \"_id\": \"6489594db7c25adcded0b8f5\",\n                \"name\": \"Berita Harian\"\n            },\n            \"language\": \"bm\",\n            \"publishedAt\": \"2023-06-17T14:02:22.000Z\",\n            \"title\": \"TFC intai perbaiki pencapaian musim lalu\",\n            \"url\": \"https://www.bharian.com.my/sukan/bola/2023/06/1115580/tfc-intai-perbaiki-pencapaian-musim-lalu\",\n            \"coverImage\": \"https://assets.bharian.com.my/images/articles/Terengganu_FC_1686981732.jpg\",\n            \"s3Path\": \"https://rizman-news-aggregator.s3.ap-southeast-1.amazonaws.com/648d4ee02aa4f0805813be6f_1115580.jpg\",\n            \"id\": \"648d4ee02aa4f0805813be6f\"\n        },\n        {\n            \"_id\": \"648d4ee02aa4f0805813be77\",\n            \"publisher\": {\n                \"_id\": \"6489594db7c25adcded0b8f5\",\n                \"name\": \"Berita Harian\"\n            },\n            \"language\": \"bm\",\n            \"publishedAt\": \"2023-06-17T13:55:07.000Z\",\n            \"title\": \"Ibu bapa perlu jaga emosi anak daripada cedera, elak masalah mental - Pakar Psikologi\",\n            \"url\": \"https://www.bharian.com.my/berita/nasional/2023/06/1115578/ibu-bapa-perlu-jaga-emosi-anak-daripada-cedera-elak-masalah-mental\",\n            \"coverImage\": \"https://assets.bharian.com.my/images/articles/Dr_Mariani_Md_Nor_1686981296.jpg\",\n            \"s3Path\": \"https://rizman-news-aggregator.s3.ap-southeast-1.amazonaws.com/648d4ee02aa4f0805813be77_1115578.jpg\",\n            \"id\": \"648d4ee02aa4f0805813be77\"\n        },\n        {\n            \"_id\": \"648d4ee02aa4f0805813be8c\",\n            \"publisher\": {\n                \"_id\": \"6489594db7c25adcded0b8f5\",\n                \"name\": \"Berita Harian\"\n            },\n            \"language\": \"bm\",\n            \"publishedAt\": \"2023-06-17T13:45:38.000Z\",\n            \"title\": \"Khazanah nafi jual KidZania kepada pengendali taman tema Singapura\",\n            \"url\": \"https://www.bharian.com.my/berita/nasional/2023/06/1115576/khazanah-nafi-jual-kidzania-kepada-pengendali-taman-tema-singapura\",\n            \"s3Path\": \"https://rizman-news-aggregator.s3.ap-southeast-1.amazonaws.com/undefined\",\n            \"id\": \"648d4ee02aa4f0805813be8c\"\n        },\n        {\n            \"_id\": \"648d4ee02aa4f0805813be93\",\n            \"publisher\": {\n                \"_id\": \"6489594db7c25adcded0b8f5\",\n                \"name\": \"Berita Harian\"\n            },\n            \"language\": \"bm\",\n            \"publishedAt\": \"2023-06-17T13:44:23.000Z\",\n            \"title\": \"Richard Chin bakal perkuat Harimau Malaya\",\n            \"url\": \"https://www.bharian.com.my/sukan/bola/2023/06/1115574/richard-chin-bakal-perkuat-harimau-malaya\",\n            \"s3Path\": \"https://rizman-news-aggregator.s3.ap-southeast-1.amazonaws.com/undefined\",\n            \"id\": \"648d4ee02aa4f0805813be93\"\n        },\n        {\n            \"_id\": \"648d4ee02aa4f0805813be7f\",\n            \"publisher\": {\n                \"_id\": \"6489594db7c25adcded0b8f5\",\n                \"name\": \"Berita Harian\"\n            },\n            \"language\": \"bm\",\n            \"publishedAt\": \"2023-06-17T13:33:19.000Z\",\n            \"title\": \"Wajib sekolah menengah boleh pertingkat kualiti pendidikan, perkukuh asas keilmuan - GPMS\",\n            \"url\": \"https://www.bharian.com.my/berita/nasional/2023/06/1115572/wajib-sekolah-menengah-boleh-pertingkat-kualiti-pendidikan-perkukuh\",\n            \"s3Path\": \"https://rizman-news-aggregator.s3.ap-southeast-1.amazonaws.com/undefined\",\n            \"id\": \"648d4ee02aa4f0805813be7f\"\n        },\n        {\n            \"_id\": \"648d4ee02aa4f0805813be81\",\n            \"publisher\": {\n                \"_id\": \"6489594db7c25adcded0b8f5\",\n                \"name\": \"Berita Harian\"\n            },\n            \"language\": \"bm\",\n            \"publishedAt\": \"2023-06-17T13:32:57.000Z\",\n            \"title\": \"Nilai GPS bukan penentu kecemerlangan sekolah\",\n            \"url\": \"https://www.bharian.com.my/berita/nasional/2023/06/1115569/nilai-gps-bukan-penentu-kecemerlangan-sekolah\",\n            \"s3Path\": \"https://rizman-news-aggregator.s3.ap-southeast-1.amazonaws.com/undefined\",\n            \"id\": \"648d4ee02aa4f0805813be81\"\n        },\n        {\n            \"_id\": \"648d4ee02aa4f0805813bf7f\",\n            \"publisher\": {\n                \"_id\": \"6489594db7c25adcded0b8f5\",\n                \"name\": \"Berita Harian\"\n            },\n            \"language\": \"bm\",\n            \"publishedAt\": \"2023-06-17T13:31:05.000Z\",\n            \"title\": \"SPRM sah terima maklumat aktiviti judi dalam talian dinaungi pemimpin politik - Azam Baki\",\n            \"url\": \"https://www.bharian.com.my/berita/nasional/2023/06/1115567/sprm-sah-terima-maklumat-aktiviti-judi-dalam-talian-dinaungi\",\n            \"s3Path\": \"https://rizman-news-aggregator.s3.ap-southeast-1.amazonaws.com/undefined\",\n            \"id\": \"648d4ee02aa4f0805813bf7f\"\n        },\n        {\n            \"_id\": \"648d4ee02aa4f0805813bf57\",\n            \"publisher\": {\n                \"_id\": \"6489594db7c25adcded0b8f5\",\n                \"name\": \"Berita Harian\"\n            },\n            \"language\": \"bm\",\n            \"publishedAt\": \"2023-06-17T13:28:32.000Z\",\n            \"title\": \"PN mula agresif di Kelantan, PH-BN masih tunggu dan lihat\",\n            \"url\": \"https://www.bharian.com.my/berita/nasional/2023/06/1115565/pn-mula-agresif-di-kelantan-ph-bn-masih-tunggu-dan-lihat\",\n            \"s3Path\": \"https://rizman-news-aggregator.s3.ap-southeast-1.amazonaws.com/undefined\",\n            \"id\": \"648d4ee02aa4f0805813bf57\"\n        },\n        {\n            \"_id\": \"648d4ee02aa4f0805813bebf\",\n            \"publisher\": {\n                \"_id\": \"6489594db7c25adcded0b8f5\",\n                \"name\": \"Berita Harian\"\n            },\n            \"language\": \"bm\",\n            \"publishedAt\": \"2023-06-17T13:26:30.000Z\",\n            \"title\": \"Osmera yakin jinak Gajah Perang\",\n            \"url\": \"https://www.bharian.com.my/sukan/bola/2023/06/1115563/osmera-yakin-jinak-gajah-perang\",\n            \"s3Path\": \"https://rizman-news-aggregator.s3.ap-southeast-1.amazonaws.com/undefined\",\n            \"id\": \"648d4ee02aa4f0805813bebf\"\n        }\n    ],\n    \"totalDocs\": 60,\n    \"limit\": 10,\n    \"totalPages\": 6,\n    \"page\": 1,\n    \"pagingCounter\": 1,\n    \"hasPrevPage\": false,\n    \"hasNextPage\": true,\n    \"prevPage\": null,\n    \"nextPage\": 2\n}"
+						}
+					]
 				},
 				{
 					"name": "get single article",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "{{URL}}/article/:id",
 							"host": [
@@ -300,12 +1012,231 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "6489c72d16fa5aaeacd325fb"
+									"value": "648d4ee02aa4f0805813be6f"
 								}
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "get single article as user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/article/:id",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"article",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "648d4ee02aa4f0805813be6f"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2154"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"86a-ecIuq4KAJDk+NthigWJpg8bamGI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 Jun 2023 07:00:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"648d4ee02aa4f0805813be6f\",\n    \"publisher\": {\n        \"_id\": \"6489594db7c25adcded0b8f5\",\n        \"name\": \"Berita Harian\"\n    },\n    \"content\": \"sukanteam@nstp.com.my<p /><p>KUALA TERENGGANU: Terengganu FC (TFC) berpeluang melangkah lebih jauh dalam kancah Piala Malaysia musim ini selepas diundi berdepan pasukan Liga M3 pada pusingan 16.</p><p /><p>Musim lalu, naib juara Piala FA itu terkandas pada separuh akhir selepas tumpas dengan agregat 3-2 di tangan Selangor FC.</p><p /><p>Ketua Pegawai Eksekutif TFC Sdn Bhd, Ab Rasid Jusoh menjelaskan, peluang buat skuadnya untuk melangkah ke suku akhir terbuka luas selepas diundi menentang pasukan bertaraf amatur.</p><p /><p>Bagaimanapun beliau awal-awal lagi mengingatkan anak buah Tomislav Steinbruckner supaya berwaspada bermula pusingan 16 kerana dalam sukan bola sepak pelbagai kejutan boleh berlaku.</p><p /><p>\\\"Keputusan undian Piala Malaysia kali ini bagaikan mengulangi episod perjalanan pasukan dalam Piala FA bermula dengan perlawanan pertama menentang Melaka FC yang berakhir dengan kemenangan 4-0.</p><p /><p>\\\"Namun saya ingatkan pemain supaya tidak memandang remeh keupayaan pasukan lawan tidak kira dari divisyen mana sekalipun, sebaliknya kami perlu perbaiki setiap kelemahan dan menggunakan kekuatan untuk mengatasi lawan.</p><p /><p>\\\"Besar harapan saya pasukan ini dapat memperbaiki perjalanan yang terhenti di separuh akhir tahun lalu dan pada masa sama berharap peminat Terengganu dapat memberikan sokongan padu kepada pasukan,\\\" katanya.</p><p>© New Straits Times Press (M) Bhd</p>\",\n    \"description\": \"KUALA TERENGGANU: Terengganu FC (TFC) berpeluang melangkah lebih jauh dalam kancah Piala Malaysia musim ini selepas diundi berdepan pasukan Liga M3 pada pusingan 16.\",\n    \"language\": \"bm\",\n    \"publishedAt\": \"2023-06-17T14:02:22.000Z\",\n    \"title\": \"TFC intai perbaiki pencapaian musim lalu\",\n    \"url\": \"https://www.bharian.com.my/sukan/bola/2023/06/1115580/tfc-intai-perbaiki-pencapaian-musim-lalu\",\n    \"coverImage\": \"https://assets.bharian.com.my/images/articles/Terengganu_FC_1686981732.jpg\",\n    \"s3Path\": \"https://rizman-news-aggregator.s3.ap-southeast-1.amazonaws.com/648d4ee02aa4f0805813be6f_1115580.jpg\",\n    \"id\": \"648d4ee02aa4f0805813be6f\"\n}"
+						},
+						{
+							"name": "get single article",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "token",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/article/:id",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"article",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "648d4ee02aa4f0805813be6f"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2275"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8e3-MN4t5rUGo5KzMCi7n9Ktp4cBGoA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 17 Jun 2023 07:01:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"_id\": \"648d4ee02aa4f0805813be6f\",\n    \"guid\": \"1115580\",\n    \"publisher\": {\n        \"_id\": \"6489594db7c25adcded0b8f5\",\n        \"name\": \"Berita Harian\"\n    },\n    \"__v\": 0,\n    \"content\": \"sukanteam@nstp.com.my<p /><p>KUALA TERENGGANU: Terengganu FC (TFC) berpeluang melangkah lebih jauh dalam kancah Piala Malaysia musim ini selepas diundi berdepan pasukan Liga M3 pada pusingan 16.</p><p /><p>Musim lalu, naib juara Piala FA itu terkandas pada separuh akhir selepas tumpas dengan agregat 3-2 di tangan Selangor FC.</p><p /><p>Ketua Pegawai Eksekutif TFC Sdn Bhd, Ab Rasid Jusoh menjelaskan, peluang buat skuadnya untuk melangkah ke suku akhir terbuka luas selepas diundi menentang pasukan bertaraf amatur.</p><p /><p>Bagaimanapun beliau awal-awal lagi mengingatkan anak buah Tomislav Steinbruckner supaya berwaspada bermula pusingan 16 kerana dalam sukan bola sepak pelbagai kejutan boleh berlaku.</p><p /><p>\\\"Keputusan undian Piala Malaysia kali ini bagaikan mengulangi episod perjalanan pasukan dalam Piala FA bermula dengan perlawanan pertama menentang Melaka FC yang berakhir dengan kemenangan 4-0.</p><p /><p>\\\"Namun saya ingatkan pemain supaya tidak memandang remeh keupayaan pasukan lawan tidak kira dari divisyen mana sekalipun, sebaliknya kami perlu perbaiki setiap kelemahan dan menggunakan kekuatan untuk mengatasi lawan.</p><p /><p>\\\"Besar harapan saya pasukan ini dapat memperbaiki perjalanan yang terhenti di separuh akhir tahun lalu dan pada masa sama berharap peminat Terengganu dapat memberikan sokongan padu kepada pasukan,\\\" katanya.</p><p>© New Straits Times Press (M) Bhd</p>\",\n    \"createdAt\": \"2023-06-17T06:12:43.538Z\",\n    \"description\": \"KUALA TERENGGANU: Terengganu FC (TFC) berpeluang melangkah lebih jauh dalam kancah Piala Malaysia musim ini selepas diundi berdepan pasukan Liga M3 pada pusingan 16.\",\n    \"isDeleted\": false,\n    \"language\": \"bm\",\n    \"publishedAt\": \"2023-06-17T14:02:22.000Z\",\n    \"title\": \"TFC intai perbaiki pencapaian musim lalu\",\n    \"updatedAt\": \"2023-06-17T06:13:07.643Z\",\n    \"url\": \"https://www.bharian.com.my/sukan/bola/2023/06/1115580/tfc-intai-perbaiki-pencapaian-musim-lalu\",\n    \"coverImage\": \"https://assets.bharian.com.my/images/articles/Terengganu_FC_1686981732.jpg\",\n    \"s3Path\": \"https://rizman-news-aggregator.s3.ap-southeast-1.amazonaws.com/648d4ee02aa4f0805813be6f_1115580.jpg\",\n    \"id\": \"648d4ee02aa4f0805813be6f\"\n}"
+						}
+					]
 				}
 			]
 		},
