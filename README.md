@@ -14,7 +14,11 @@ Built on NodeJs, Express & MongoDb
 ## API documentation
 Please refer to the postman collection in `news_aggregator.postman_collection`
 
-## Data import
+## Accessing content
+1. login by requesting `GET /auth/login`. Server will respond with a token.
+2. This token should be attached to the header of all subsequent requests as `token` header.
+
+## Trigger scraping
 To manually trigger scraping - run `node scrap.cron.js`; 
 Scaper will pull all data from rss feeds but will only scrape websites for articles from the last `X` days
 Period can be specified in the `.env` file using the `PAST_DAYS` key
