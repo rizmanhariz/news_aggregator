@@ -6,10 +6,8 @@ const { authenticateUser, checkUserLoggedIn } = require("../middleware/auth.midd
 
 const authRouter = express.Router();
 
-// get list of articles
 authRouter.post("/login", validateLogin, asyncHandler(authController.login));
 
-// get article content
 authRouter.post(
   "/register",
   validateLogin,
