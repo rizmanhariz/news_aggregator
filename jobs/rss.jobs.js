@@ -39,7 +39,7 @@ async function scrapePublishers() {
   logger.info("scrapePublishers", "RSS scrape completed");
 
   // get articles that dont have images
-  const startingPoint = startOfDay(subDays(new Date(), 10)); // past ten days
+  const startingPoint = startOfDay(subDays(new Date(), process.env.PAST_DAYS)); // past ten days
   const articleData = await ArticleModel.find(
     {
       publishedAt: {
