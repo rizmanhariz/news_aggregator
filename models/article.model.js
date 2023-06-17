@@ -48,6 +48,7 @@ const articleSchema = new Schema(
   { timestamps: true },
 );
 articleSchema.plugin(mongoosePaginate);
+articleSchema.index({ publisher: 1, guid: 1 }, { unique: true });
 
 const ArticleModel = model("article", articleSchema);
 

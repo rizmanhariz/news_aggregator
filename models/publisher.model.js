@@ -45,6 +45,9 @@ const publisherSchema = new Schema(
     rss_url: {
       type: String,
       required: true,
+      index: {
+        unique: true,
+      },
     },
     isDeleted: {
       type: Boolean,
