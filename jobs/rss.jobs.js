@@ -1,6 +1,6 @@
 const { subDays, startOfDay } = require("date-fns");
 const logger = require("../core/log.core");
-const { PublisherModel } = require("../models/publisher.model");
+const { PublisherModel, STATUS_ENUM } = require("../models/publisher.model");
 const { ArticleModel } = require("../models/article.model");
 const { getRSSData, saveRSSData } = require("../core/rss.core");
 const { scrapeArticleWebpage } = require("../core/puppeteer.core");
@@ -8,10 +8,32 @@ const { scrapeArticleWebpage } = require("../core/puppeteer.core");
 async function scrapePublishers() {
   logger.info("scrapePublishers", "starting");
   // get all active publishers
-  const publisherData = await PublisherModel.find({ isActive: true }, {});
+  const publisherData = await PublisherModel.find({
+    isDeleted: false,
+    status: STATUS_ENUM.ACTIVE,
+  });
   const promiseArray = publisherData.map(async (publisher) => {
-    const rssData = await getRSSData(publisher);
-    await saveRSSData(publisher, rssData.items);
+    logger.info(publisher.name, "start");
+    try {
+      const rssData = await getRSSData(publisher);
+      await saveRSSData(publisher, rssData.items);
+      // mark
+      await PublisherModel.findOneAndUpdate({
+        _id: publisher._id,
+      }, { retryAttempt: 0, status: STATUS_ENUM.ACTIVE });
+    } catch (err) {
+      logger.error(publisher.name, err);
+      // increment error
+      const updateParams = { $inc: { retryAttempt: 1 } };
+      if ((publisher.retryAttempt + 1) >= process.env.RETRY_ATTEMPTS) {
+        updateParams.status = STATUS_ENUM.ERROR;
+      }
+      logger.info(`${publisher.name} UPDATE`, updateParams);
+      await PublisherModel.findOneAndUpdate({
+        _id: publisher._id,
+      }, updateParams);
+      logger.info(publisher.name, "DUHN");
+    }
   });
   await Promise.allSettled(promiseArray);
   logger.info("scrapePublishers", "RSS scrape completed");

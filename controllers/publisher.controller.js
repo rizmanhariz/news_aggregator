@@ -1,6 +1,7 @@
 const { ObjectId } = require("mongoose").Types;
 const { PublisherModel } = require("../models/publisher.model");
 const { AppError } = require("../core/error.core");
+const { getRSSData } = require("../core/rss.core");
 
 async function getPublishers(req, res) {
   const { name, page, limit } = req.query;
@@ -12,8 +13,9 @@ async function getPublishers(req, res) {
   let projection = {};
 
   if (!req.user?.isAdmin) {
+    // generic user filters - skip deleted, only retrieve basic data
     projection = { name: 1, url: 1, defaultImage: 1 };
-    queryFilter.isActive = true;
+    queryFilter.isDeleted = false;
   }
 
   const publisherData = await PublisherModel.paginate(queryFilter, {
@@ -31,6 +33,13 @@ async function getOnePublisher(req, res) {
 }
 
 async function createPublisher(req, res) {
+  try {
+    // validate if rss url works
+    await getRSSData(req.body);
+  } catch (err) {
+    // rss doesnt work
+    throw new AppError(400, "INPUT001", false, "UNABLE TO PULL DATA FROM RSS-URL");
+  }
   const newPublisher = new PublisherModel({
     ...req.body,
   });
@@ -39,6 +48,13 @@ async function createPublisher(req, res) {
 }
 
 async function updatePublisher(req, res) {
+  try {
+    // validate if rss url works
+    await getRSSData(req.body);
+  } catch (err) {
+    // rss doesnt work
+    throw new AppError(400, "INPUT001", false, "UNABLE TO PULL DATA FROM RSS-URL");
+  }
   const updatedPublisher = await PublisherModel.findOneAndUpdate(
     {
       _id: new ObjectId(req.params.id),

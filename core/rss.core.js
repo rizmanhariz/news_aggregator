@@ -1,27 +1,15 @@
 const parseISO = require("date-fns/parseISO");
 const Parser = require("rss-parser");
 const randomUserAgent = require("random-useragent");
-const logger = require("./log.core");
-const { PublisherModel } = require("../models/publisher.model");
 const { ArticleModel } = require("../models/article.model");
 
 async function getRSSData(publisher) {
-  try {
-    const userAgent = randomUserAgent.getRandom((ua) => ua.browserName === "Chrome" && ua.osName === "Windows");
-    const parser = new Parser({
-      headers: { "User-Agent": userAgent },
-    });
-    const feedData = await parser.parseURL(publisher.rss_url);
-    return feedData;
-  } catch (err) {
-    // error getting feed. update status for a retry
-    logger.error("PARSER ERROR", err);
-    await PublisherModel.updateOne(
-      { _id: publisher._id },
-      { $inc: { retryAttempt: 1 } },
-    );
-    return [];
-  }
+  const userAgent = randomUserAgent.getRandom((ua) => ua.browserName === "Chrome" && ua.osName === "Windows");
+  const parser = new Parser({
+    headers: { "User-Agent": userAgent },
+  });
+  const feedData = await parser.parseURL(publisher.rss_url);
+  return feedData;
 }
 
 async function saveRSSData(publisher, rssItems) {

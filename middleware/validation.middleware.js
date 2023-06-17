@@ -49,8 +49,8 @@ async function validateCreatePublisher(req, res, next) {
       .required(),
     rss_url: Joi.string()
       .required(),
-    isActive: Joi.boolean()
-      .required(),
+    isDeleted: Joi.boolean()
+      .optional(),
     imageScraperMeta: Joi.object({
       selector: Joi.string()
         .required(),
