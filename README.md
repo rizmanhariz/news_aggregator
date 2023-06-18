@@ -26,4 +26,3 @@ Period can be specified in the `.env` file using the `PAST_DAYS` key
 ## Future
 1. I may add a frontend to pull the data and review data.
 2. Clean up image saving - use streams instead of saving locally
-3. push 
