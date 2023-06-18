@@ -14,7 +14,7 @@ Built on NodeJs, Express & MongoDb
 ## API documentation
 Please refer to the postman collection in `news_aggregator.postman_collection`
 
-## Accessing content
+## Authentication
 1. login by requesting `GET /auth/login`. Server will respond with a token.
 2. This token should be attached to the header of all subsequent requests as `token` header.
 
