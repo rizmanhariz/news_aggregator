@@ -48,7 +48,7 @@ logger.info(`Server live on PORT: ${PORT}`);
 // │ │ │ │ │ │
 // │ │ │ │ │ │
 // * * * * * *
-cron.schedule("0 0 * * * *", () => {
+cron.schedule("0 0 * * * *", async () => {
   // runs hourly to scrape apis
   try {
     await scrapePublishers();
